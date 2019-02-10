@@ -63,5 +63,11 @@
       },
       "type": "Microsoft.Storage/storageAccounts"
     }
-  ]
+  ],
+  "outputs": {
+    "websiteendpoint": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))).primaryEndpoints.web]"
+    }
+  }
 }
