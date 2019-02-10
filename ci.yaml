@@ -32,3 +32,4 @@ steps:
   displayName: Publish website artifacts
   inputs:
     PathtoPublish: '$(build.artifactstagingdirectory)/content'
+    ArtifactName: content
