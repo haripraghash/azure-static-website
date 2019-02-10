@@ -2,9 +2,9 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "location": {
+    "shortRegion": {
       "type": "string",
-      "defaultValue": "[resourceGroup().location]",
+      "defaultValue": "eun",
       "metadata": {
         "description": "The location in which the Azure Storage resources should be deployed."
       }
@@ -18,19 +18,15 @@
     }
   },
   "variables": {
-    "storageAccountName": "[concat('staticwebsite', [resourceGroup().location], parameters('env'), 'stor')]"
+    "storageAccountName": "[concat('staticwebsite', parameters('shortRegion'), parameters('env'), 'stor')]",
+    "location": "[resourceGroup().location]"
   },
   "resources": [
     {
-      "name": "[parameters('storageAccountName')]",
-      "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2018-02-01",
-      "location": "[parameters('location')]",
       "kind": "StorageV2",
-      "sku": {
-        "name": "Standard_LRS",
-        "tier": "Standard"
-      },
+      "location": "[variables('location')]",
+      "name": "[variables('storageAccountName')]",
       "properties": {
         "accessTier": "Hot",
         "supportsHttpsTrafficOnly": true,
@@ -45,7 +41,12 @@
           },
           "keySource": "Microsoft.Storage"
         }
-      }
+      },
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "type": "Microsoft.Storage/storageAccounts"
     }
   ]
 }
