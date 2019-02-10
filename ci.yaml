@@ -21,3 +21,14 @@ steps:
   inputs:
     SourceFolder: content
     TargetFolder: '$(build.artifactstagingdirectory)/content'
+
+- task: PublishBuildArtifacts@1
+  displayName: Infrastructure provisioning
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)/iac'
+    ArtifactName: iac
+
+- task: PublishBuildArtifacts@1
+  displayName: Site
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)/website'
