@@ -13,7 +13,7 @@ steps:
 - task: CopyFiles@2
   displayName: Copy provisioning scripts
   inputs:
-    SourceFolder: azurestaticwebsite\AzureStaticWeb.Provisioning
+    SourceFolder: azurestaticwebsite/AzureStaticWeb.Provisioning
     TargetFolder: '$(build.artifactstagingdirectory)/iac'
 
 - task: CopyFiles@2
