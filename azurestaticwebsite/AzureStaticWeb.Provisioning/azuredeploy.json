@@ -2,26 +2,23 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "storageAccountName": {
-      "type": "string",
-      "metadata": {
-        "description": "The name of the Azure Storage account."
-      }
-    },
-    "containerName": {
-      "type": "string",
-      "defaultValue": "logs",
-      "metadata": {
-        "description": "The name of the blob container."
-      }
-    },
     "location": {
       "type": "string",
       "defaultValue": "[resourceGroup().location]",
       "metadata": {
         "description": "The location in which the Azure Storage resources should be deployed."
       }
+    },
+    "env": {
+      "type": "string",
+      "defaultValue": "dev",
+      "metadata": {
+        "description": "The env in which the Azure Storage resources should be deployed."
+      }
     }
+  },
+  "variables": {
+    "storageAccountName": "[concat('staticwebsite', [resourceGroup().location], parameters('env'), 'stor')]"
   },
   "resources": [
     {
@@ -48,17 +45,7 @@
           },
           "keySource": "Microsoft.Storage"
         }
-      },
-      "resources": [
-        {
-          "name": "[concat('default/', parameters('containerName'))]",
-          "type": "blobServices/containers",
-          "apiVersion": "2018-03-01-preview",
-          "dependsOn": [
-            "[parameters('storageAccountName')]"
-          ]
-        }
-      ]
+      }
     }
   ]
 }
