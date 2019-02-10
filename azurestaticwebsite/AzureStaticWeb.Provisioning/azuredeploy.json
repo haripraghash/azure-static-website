@@ -15,6 +15,21 @@
       "metadata": {
         "description": "The env in which the Azure Storage resources should be deployed."
       }
+    },
+    /* Artifacts parameters */
+    "_artifactsLocation": {
+      "type": "string"
+    },
+    "_artifactsLocationSasToken": {
+      "type": "securestring"
+    },
+    "_templateFolder": {
+      "type": "string",
+      "defaultValue": "Templates"
+    },
+    "_scriptsFolder": {
+      "type": "string",
+      "defaultValue": "Scripts"
     }
   },
   "variables": {
