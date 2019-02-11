@@ -95,7 +95,7 @@ $deployment
 $context = Get-AzureRmContext
 $cache = $context.TokenCache
 $cacheItem = $cache.ReadItems()
-$token = ($cacheItem | where { $_.Resource -eq "https://graph.windows.net/" }).accessToken
+$token = $cacheItem.accessToken
 $token
 if ($ValidateOnly) {
     $ErrorMessages = Format-ValidationOutput (Test-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
