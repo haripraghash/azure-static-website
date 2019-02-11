@@ -28,8 +28,9 @@
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
-    <Content Include="Entrypoint.ps1" />
     <Content Include="Deploy-AzureResourceGroup.ps1" />
+    <Content Include="Entrypoint.ps1" />
+    <Content Include="configure-staticwebsite.ps1" />
     <Content Include="README.md" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
