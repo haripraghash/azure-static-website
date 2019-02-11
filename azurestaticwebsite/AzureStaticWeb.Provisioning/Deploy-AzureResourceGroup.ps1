@@ -97,6 +97,17 @@ $cache = $context.TokenCache
 $cacheItem = $cache.ReadItems()
 $token = $cacheItem.accessToken
 $token
+
+[XML]$xml = '<?xml version="1.0" encoding="utf-8"?><StorageServiceProperties><StaticWebsite><Enabled>true</Enabled><IndexDocument>index.html</IndexDocument><ErrorDocument404Path>404.html</ErrorDocument404Path></StaticWebsite></StorageServiceProperties>'
+
+$headers = @{
+    "Content-Type" = "application/xml"
+    "x-ms-version" = "2018-03-28"
+    "Authorization" = "Bearer $token"
+}
+
+Invoke-RestMethod -Uri https://staticwebsiteeundevstor.blob.core.windows.net?restype=service"&"comp=properties -Method Put -Body $xml -Headers $headers -Verbose
+
 if ($ValidateOnly) {
     $ErrorMessages = Format-ValidationOutput (Test-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
                                                                                   -TemplateFile $TemplateFile `
