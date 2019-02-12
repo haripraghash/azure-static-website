@@ -1,5 +1,7 @@
 #Requires -Version 3.0
 
+
+
 Param(
     [string] [Parameter(Mandatory=$true)] $ResourceGroupLocation,
     [string] $ResourceGroupName = 'azurestaticwebsite',
@@ -14,6 +16,7 @@ Param(
 )
 
 try {
+Enable-AzureRMAlias
     [Microsoft.Azure.Common.Authentication.AzureSession]::ClientFactory.AddUserAgent("VSAzureTools-$UI$($host.name)".replace(' ','_'), '3.0.0')
 } catch { }
 
